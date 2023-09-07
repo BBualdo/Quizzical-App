@@ -1,0 +1,30 @@
+:root {
+  /* COLORS */
+  --baby-medium: hsla(210, 65%, 92%, 1);
+  --lemon-medium: hsla(54, 100%, 91%, 1);
+  /* FONTS */
+  --karla: 'Karla', sans-serif;
+  --inter: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.question-text, 
+h1 {
+  font-family: var(--karla);
+}
+
+.button,
+p {
+  font-family: var(--inter);
+}
+
+body {
+  background-image: url(./images/blob1.svg), url(./images/blob2.svg);
+  background-position: left bottom, right top;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
