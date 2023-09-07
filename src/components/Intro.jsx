@@ -5,7 +5,7 @@ export default function Intro(props) {
     <section className='intro-page'>
       <h1>Quizzical</h1>
       <p>5 simple (or not) questions.<br /> Can you answer them all?</p>
-      <button onClick={props.changePage}>Start quiz</button>
+      <button className='main-button' onClick={props.changePage}>Start quiz</button>
     </section>
   )
 }

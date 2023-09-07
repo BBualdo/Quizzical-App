@@ -18,7 +18,7 @@ h1 {
   font-family: var(--karla);
 }
 
-.button,
+button,
 p {
   font-family: var(--inter);
 }
@@ -29,6 +29,8 @@ body {
   background-repeat: no-repeat;
   min-height: 100vh;
 }
+
+/* INTRO PAGE */
 
 .intro-page {
   align-items: center;
@@ -46,20 +48,61 @@ body {
 .intro-page > p {
   color: var(--darkBlue);
   line-height: 24px;
-  margin-bottom: 29px;
   margin-top: 7px;
 }
 
-.intro-page > button {
+.main-button {
   background-color: var(--nightBlue);
   border: none;
   border-radius: 16px;
   color: white;
   cursor: pointer;
+  font-weight: 500;
+  margin-top: 20px;
   padding: 16px 60px;
   transition: opacity 0.2s;
 }
 
-.intro-page > button:hover {
+.main-button:hover {
   opacity: 0.8;
+}
+
+/* MAIN PAGE */
+
+.main-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 25px 75px;
+}
+
+.question-container {
+  border-bottom: 1px solid #DBDEF0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 100%;
+  padding: 15px 0;
+}
+
+.question-text {
+  color: var(--darkBlue);
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.answer-button {
+  background-color: transparent;
+  border: 1px solid var(--nightBlue);
+  border-radius: 8px;
+  color: var(--darkBlue);
+  cursor: pointer;
+  font-size: clamp(0.75rem, 2vw, 1.5rem);
+  font-weight: 500;
+  margin-right: 2vw;
+  padding: 4px 20px;
+  transition: box-shadow 0.1s;
+}
+
+.answer-button:hover {
+  box-shadow: 0 0 4px var(--nightBlue);
 }
