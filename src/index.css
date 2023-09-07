@@ -1,7 +1,8 @@
 :root {
   /* COLORS */
-  --baby-medium: hsla(210, 65%, 92%, 1);
-  --lemon-medium: hsla(54, 100%, 91%, 1);
+  --darkBlue: hsla(231, 42%, 28%, 1);
+  --nightBlue: hsla(230, 34%, 46%, 1);
+
   /* FONTS */
   --karla: 'Karla', sans-serif;
   --inter: 'Inter', sans-serif;
@@ -27,4 +28,38 @@ body {
   background-position: left bottom, right top;
   background-repeat: no-repeat;
   min-height: 100vh;
+}
+
+.intro-page {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+
+.intro-page > h1 {
+  color: var(--darkBlue);
+  font-size: 31.25px;
+}
+
+.intro-page > p {
+  color: var(--darkBlue);
+  line-height: 24px;
+  margin-bottom: 29px;
+  margin-top: 7px;
+}
+
+.intro-page > button {
+  background-color: var(--nightBlue);
+  border: none;
+  border-radius: 16px;
+  color: white;
+  cursor: pointer;
+  padding: 16px 60px;
+  transition: opacity 0.2s;
+}
+
+.intro-page > button:hover {
+  opacity: 0.8;
 }
