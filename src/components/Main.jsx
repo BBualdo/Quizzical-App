@@ -1,6 +1,28 @@
 import React from 'react'
 
 export default function Main() {
+  const [questionsData, setQuestionsData] = React.useState([])
+
+  React.useEffect(() => {
+    (async function getQuestions() {
+      const res = await fetch("https://opentdb.com/api.php?amount=5");
+      const data = await res.json()
+      setQuestionsData(data.results)
+    })()
+  }, [])
+
+  console.log(questionsData)
+  const questions = questionsData.map(element => {
+    return element.question
+  })
+
+  const answers = questionsData.map(element => {
+    return [element.correct_answer, ...element.incorrect_answers]
+  })
+
+  console.log(questions)
+  console.log(answers)
+
   return (
     <section className='main-page'>
       <div className='question-container'>
