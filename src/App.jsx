@@ -9,8 +9,10 @@ export default function App() {
   />
   )
 
-  function changePage() {
-    setPage(<Main />)
+  function changePage(selectedDifficulty) {
+    setPage(<Main 
+    difficulty={selectedDifficulty}
+    />)
   }
 
   return (

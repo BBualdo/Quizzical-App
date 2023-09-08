@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Main() {
+export default function Main(props) {
   const [questionsData, setQuestionsData] = React.useState([])
   const [selectedAnswers, setSelectedAnswer] = React.useState({})
   const [answersChecked, setAnswersChecked] = React.useState(false)
@@ -11,7 +11,7 @@ export default function Main() {
   }, [])
 
   const fetchQuestions = async () => {
-    const res = await fetch("https://opentdb.com/api.php?amount=5&difficulty=easy");
+    const res = await fetch(`https://opentdb.com/api.php?amount=5&difficulty=${props.difficulty}`);
     const data = await res.json()
     // Shuffle answers once
     const shuffledQuestions = data.results.map(questionData => ({
