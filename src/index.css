@@ -88,7 +88,7 @@ body {
 
 .question-text {
   color: var(--darkBlue);
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1rem, 3vw, 1.75rem);
 }
 
 .answers {
@@ -105,7 +105,7 @@ body {
   border-radius: 8px;
   color: var(--darkBlue);
   cursor: pointer;
-  font-size: clamp(0.75rem, 2vw, 1.5rem);
+  font-size: clamp(0.75rem, 2vw, 1rem);
   font-weight: 500;
   padding: 4px 20px;
   text-align: center;
