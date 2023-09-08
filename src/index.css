@@ -90,6 +90,14 @@ body {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
+.answers {
+  column-gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  row-gap: 8px;
+}
+
 .answer-button {
   background-color: transparent;
   border: 1px solid var(--nightBlue);
@@ -98,8 +106,8 @@ body {
   cursor: pointer;
   font-size: clamp(0.75rem, 2vw, 1.5rem);
   font-weight: 500;
-  margin-right: 2vw;
   padding: 4px 20px;
+  text-align: center;
   transition: box-shadow 0.1s;
 }
 
