@@ -11,14 +11,30 @@ export default function Main() {
     })()
   }, [])
 
+  function decodeHTML(html) {
+    const txt = document.createElement('textarea');
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   return (
     <section className='main-page'>
       {questionsData.map((questionData, index) => (
           <div key={index} className='question-container'>
-        <p className='question-text'>{questionData.question}</p>
+        <p 
+        className='question-text' 
+        dangerouslySetInnerHTML=
+        {{ __html: decodeHTML(questionData.question) }}
+        >
+        </p>
         <div className='answers'>
           {shuffleAnswers(questionData).map((answer, answerIndex) => (
-            <button key={answerIndex} className='answer-button'>{answer}
+            <button
+             key={answerIndex} 
+             className='answer-button'
+             dangerouslySetInnerHTML=
+             {{ __html: decodeHTML(answer) }}
+             >
             </button>
           ))}
         </div>
