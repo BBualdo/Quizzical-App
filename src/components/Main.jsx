@@ -4,6 +4,7 @@ export default function Main() {
   const [questionsData, setQuestionsData] = React.useState([])
   const [selectedAnswers, setSelectedAnswer] = React.useState({})
   const [answersChecked, setAnswersChecked] = React.useState(false)
+  const [correctAnswersCount, setCorrectAnswersCount] = React.useState(0)
 
   React.useEffect(() => {
     (async function getQuestions() {
@@ -29,11 +30,14 @@ export default function Main() {
   }
 
   function checkAnswers() {
+    let count = 0
     for (let i = 0; i < questionsData.length; i++) {
-      selectedAnswers[i] === questionsData[i].correct_answer 
-      ? console.log(`${selectedAnswers[i]} is correct answer!`) : console.log(`${selectedAnswers[i]} is incorrect answer!`)
+      if (selectedAnswers[i] === questionsData[i].correct_answer) {
+        count++
+      } 
     }
-    setAnswersChecked(true);
+    setAnswersChecked(true)
+    setCorrectAnswersCount(count)
   }
 
   return (
@@ -81,7 +85,7 @@ export default function Main() {
       {answersChecked && 
       <div className='result-container'>
         <p className='result'>
-          {`You scored ${'x'} correct answers`}
+          {`You scored ${correctAnswersCount}/${questionsData.length} correct answers`}
         </p>
         <button className='main-button'>Play again</button>
       </div>}
