@@ -7,17 +7,22 @@ export default function Main() {
   const [correctAnswersCount, setCorrectAnswersCount] = React.useState(0)
 
   React.useEffect(() => {
-    (async function getQuestions() {
-      const res = await fetch("https://opentdb.com/api.php?amount=5");
-      const data = await res.json()
-      // Shuffle answers once
-      const shuffledQuestions = data.results.map(questionData => ({
-        ...questionData,
-        answers: shuffleAnswers(questionData)
-      }))
-      setQuestionsData(shuffledQuestions)
-    })()
+    fetchQuestions();
   }, [])
+
+  const fetchQuestions = async () => {
+    const res = await fetch("https://opentdb.com/api.php?amount=5");
+    const data = await res.json()
+    // Shuffle answers once
+    const shuffledQuestions = data.results.map(questionData => ({
+      ...questionData,
+      answers: shuffleAnswers(questionData)
+    }))
+    setQuestionsData(shuffledQuestions);
+    setSelectedAnswer({});
+    setAnswersChecked(false);
+    setCorrectAnswersCount(0);
+  }
 
   function decodeHTML(html) {
     const txt = document.createElement('textarea');
@@ -38,6 +43,10 @@ export default function Main() {
     }
     setAnswersChecked(true)
     setCorrectAnswersCount(count)
+  }
+
+  function resetQuiz() {
+    fetchQuestions();
   }
 
   return (
@@ -66,11 +75,13 @@ export default function Main() {
                     ? 'checked'
                     : ''
                 }`}
-              dangerouslySetInnerHTML=
-              {{ __html: decodeHTML(answer) }}
-              onClick={() => selectAnswer(index, answer)}
-              >
-              </button>
+              dangerouslySetInnerHTML={{ 
+              __html: decodeHTML(answer) 
+              }}
+              onClick={() => !answersChecked && selectAnswer(index, answer)}
+              // Disable button when answersChecked is true
+              disabled={answersChecked}
+              ></button>
             ))}
           </div>
         </div>
@@ -87,7 +98,10 @@ export default function Main() {
         <p className='result'>
           {`You scored ${correctAnswersCount}/${questionsData.length} correct answers`}
         </p>
-        <button className='main-button'>Play again</button>
+        <button 
+        className='main-button'
+        onClick={resetQuiz}
+        >Play again</button>
       </div>}
     </section>
   )
