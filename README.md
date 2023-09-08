@@ -5,3 +5,7 @@ App where user can generate 5-question quiz based on chosen diffuculty level, se
 ## API ##
 
 https://opentdb.com/api.php?amount=5
+
+## SiteURL ##
+
+https://bbualdo-quizzical.netlify.app
