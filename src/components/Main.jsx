@@ -30,51 +30,61 @@ export default function Main() {
 
   function checkAnswers() {
     for (let i = 0; i < questionsData.length; i++) {
-      selectedAnswers[i] === questionsData[i].correct_answer ?
-      console.log(`${selectedAnswers[i]} is correct answer!`) :
-      console.log(`${selectedAnswers[i]} is incorrect answer!`)
+      selectedAnswers[i] === questionsData[i].correct_answer 
+      ? console.log(`${selectedAnswers[i]} is correct answer!`) : console.log(`${selectedAnswers[i]} is incorrect answer!`)
     }
     setAnswersChecked(true);
   }
 
   return (
     <section className='main-page'>
-      {questionsData.map((questionData, index) => (
-          <div key={index} className='question-container'>
-        <p 
-        className='question-text' 
-        dangerouslySetInnerHTML=
-        {{ __html: decodeHTML(questionData.question) }}
-        >
-        </p>
-        <div className='answers'>
-          {questionData.answers.map((answer, answerIndex) => (
-            <button
-             key={answerIndex} 
-             className={`answer-button ${
-               !answersChecked && selectedAnswers[index] === answer 
-                  ? 'selected' 
-                  : answersChecked && answer === questionData.correct_answer 
-                  ? 'correct-answer' 
-                  : answersChecked && selectedAnswers[index] === answer
-                  ? 'incorrect-answer'
-                  : answersChecked
-                  ? 'checked'
-                  : ''
-              }`}
-             dangerouslySetInnerHTML=
-             {{ __html: decodeHTML(answer) }}
-             onClick={() => selectAnswer(index, answer)}
-             >
-            </button>
-          ))}
+      <div className='quiz-container'>
+        {questionsData.map((questionData, index) => (
+            <div key={index} className='question-container'>
+          <p 
+          className='question-text' 
+          dangerouslySetInnerHTML=
+          {{ __html: decodeHTML(questionData.question) }}
+          >
+          </p>
+          <div className='answers'>
+            {questionData.answers.map((answer, answerIndex) => (
+              <button
+              key={answerIndex} 
+              className={`answer-button ${
+                !answersChecked && selectedAnswers[index] === answer 
+                    ? 'selected' 
+                    : answersChecked && answer === questionData.correct_answer 
+                    ? 'correct-answer' 
+                    : answersChecked && selectedAnswers[index] === answer
+                    ? 'incorrect-answer'
+                    : answersChecked
+                    ? 'checked'
+                    : ''
+                }`}
+              dangerouslySetInnerHTML=
+              {{ __html: decodeHTML(answer) }}
+              onClick={() => selectAnswer(index, answer)}
+              >
+              </button>
+            ))}
+          </div>
         </div>
+        ))}
       </div>
-      ))}
+      {!answersChecked && 
       <button 
       className='main-button'
       onClick={checkAnswers}
-      >Check answers</button>
+      >Check answers
+      </button>}
+      {answersChecked && 
+      <div className='result-container'>
+        <p className='result'>
+          {`You scored ${'x'} correct answers`}
+        </p>
+        <button className='main-button'>Play again</button>
+      </div>}
     </section>
   )
 }
