@@ -11,18 +11,6 @@ export default function Main() {
     })()
   }, [])
 
-  console.log(questionsData)
-  const questions = questionsData.map(element => {
-    return element.question
-  })
-
-  const answers = questionsData.map(element => {
-    return [element.correct_answer, ...element.incorrect_answers]
-  })
-
-  console.log(questions)
-  console.log(answers)
-
   return (
     <section className='main-page'>
       <div className='question-container'>
@@ -37,4 +25,15 @@ export default function Main() {
       <button className='main-button'>Check answers</button>
     </section>
   )
+}
+
+// Function that shuffles the answers
+function shuffleAnswers(questionsData) {
+  const answers = [questionsData.correct_answer, ...questionsData.incorrect_answers];
+  // Randomizing the answers
+  for (let i = answers.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [answers[i], answers[j]] = [answers[j], answers[i]]
+  }
+  return answers
 }
