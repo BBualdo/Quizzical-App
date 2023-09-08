@@ -3,6 +3,7 @@ import React from 'react'
 export default function Main() {
   const [questionsData, setQuestionsData] = React.useState([])
   const [selectedAnswers, setSelectedAnswer] = React.useState({})
+  const [answersChecked, setAnswersChecked] = React.useState(false)
 
   React.useEffect(() => {
     (async function getQuestions() {
@@ -33,7 +34,7 @@ export default function Main() {
       console.log(`${selectedAnswers[i]} is correct answer!`) :
       console.log(`${selectedAnswers[i]} is incorrect answer!`)
     }
-    
+    setAnswersChecked(true);
   }
 
   return (
@@ -50,9 +51,17 @@ export default function Main() {
           {questionData.answers.map((answer, answerIndex) => (
             <button
              key={answerIndex} 
-             className={`answer-button ${selectedAnswers[index] === answer ?
-               'selected' :
-                ''}`}
+             className={`answer-button ${
+               !answersChecked && selectedAnswers[index] === answer 
+                  ? 'selected' 
+                  : answersChecked && answer === questionData.correct_answer 
+                  ? 'correct-answer' 
+                  : answersChecked && selectedAnswers[index] === answer
+                  ? 'incorrect-answer'
+                  : answersChecked
+                  ? 'checked'
+                  : ''
+              }`}
              dangerouslySetInnerHTML=
              {{ __html: decodeHTML(answer) }}
              onClick={() => selectAnswer(index, answer)}

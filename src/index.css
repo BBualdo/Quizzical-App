@@ -3,6 +3,8 @@
   --darkBlue: hsla(231, 42%, 28%, 1);
   --nightBlue: hsla(230, 34%, 46%, 1);
   --lightBlue: hsla(230, 61%, 90%, 1);
+  --correct: hsla(133, 46%, 71%, 1);
+  --incorrect: hsla(360, 81%, 85%, 1);
 
   /* FONTS */
   --karla: 'Karla', sans-serif;
@@ -118,5 +120,19 @@ body {
 
 .selected {
   background-color: var(--lightBlue);
+  border: none;
+}
+
+.checked {
+  opacity: 0.5;
+}
+
+.correct-answer {
+  background-color: var(--correct);
+  border: none;
+}
+
+.incorrect-answer {
+  background-color: var(--incorrect);
   border: none;
 }
