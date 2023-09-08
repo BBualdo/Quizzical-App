@@ -2,6 +2,7 @@
   /* COLORS */
   --darkBlue: hsla(231, 42%, 28%, 1);
   --nightBlue: hsla(230, 34%, 46%, 1);
+  --lightBlue: hsla(230, 61%, 90%, 1);
 
   /* FONTS */
   --karla: 'Karla', sans-serif;
@@ -113,4 +114,9 @@ body {
 
 .answer-button:hover {
   box-shadow: 0 0 4px var(--nightBlue);
+}
+
+.selected {
+  background-color: var(--lightBlue);
+  border: none;
 }

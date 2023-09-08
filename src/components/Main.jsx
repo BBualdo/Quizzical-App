@@ -2,12 +2,18 @@ import React from 'react'
 
 export default function Main() {
   const [questionsData, setQuestionsData] = React.useState([])
+  const [selectedAnswers, setSelectedAnswer] = React.useState({})
 
   React.useEffect(() => {
     (async function getQuestions() {
       const res = await fetch("https://opentdb.com/api.php?amount=5");
       const data = await res.json()
-      setQuestionsData(data.results)
+      // Shuffle answers once
+      const shuffledQuestions = data.results.map(questionData => ({
+        ...questionData,
+        answers: shuffleAnswers(questionData)
+      }))
+      setQuestionsData(shuffledQuestions)
     })()
   }, [])
 
@@ -15,6 +21,11 @@ export default function Main() {
     const txt = document.createElement('textarea');
     txt.innerHTML = html;
     return txt.value;
+  }
+
+  function selectAnswer(questionIndex, answer) {
+    setSelectedAnswer({...selectedAnswers, [questionIndex]: answer})
+    console.log(selectedAnswers)
   }
 
   return (
@@ -28,12 +39,15 @@ export default function Main() {
         >
         </p>
         <div className='answers'>
-          {shuffleAnswers(questionData).map((answer, answerIndex) => (
+          {questionData.answers.map((answer, answerIndex) => (
             <button
              key={answerIndex} 
-             className='answer-button'
+             className={`answer-button ${selectedAnswers[index] === answer ?
+               'selected' :
+                ''}`}
              dangerouslySetInnerHTML=
              {{ __html: decodeHTML(answer) }}
+             onClick={() => selectAnswer(index, answer)}
              >
             </button>
           ))}
