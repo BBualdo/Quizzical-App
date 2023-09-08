@@ -25,7 +25,15 @@ export default function Main() {
 
   function selectAnswer(questionIndex, answer) {
     setSelectedAnswer({...selectedAnswers, [questionIndex]: answer})
-    console.log(selectedAnswers)
+  }
+
+  function checkAnswers() {
+    for (let i = 0; i < questionsData.length; i++) {
+      selectedAnswers[i] === questionsData[i].correct_answer ?
+      console.log(`${selectedAnswers[i]} is correct answer!`) :
+      console.log(`${selectedAnswers[i]} is incorrect answer!`)
+    }
+    
   }
 
   return (
@@ -54,7 +62,10 @@ export default function Main() {
         </div>
       </div>
       ))}
-      <button className='main-button'>Check answers</button>
+      <button 
+      className='main-button'
+      onClick={checkAnswers}
+      >Check answers</button>
     </section>
   )
 }
